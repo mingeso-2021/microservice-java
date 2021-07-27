@@ -1,6 +1,7 @@
 package com.webapp.microservice.models;
 
 public class Diploma {
+<<<<<<< HEAD
     private Interger id;
     private String name;
 
@@ -9,6 +10,16 @@ public class Diploma {
     }
 
     public void setId(Interger id) {
+=======
+    private Integer id;
+    private String name;
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+>>>>>>> renameandconnectiondb
         this.id = id;
     }
 
