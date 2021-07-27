@@ -29,6 +29,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
+    implementation group: 'org.sql2o', name: 'sql2o', version: '1.5.4'
+    implementation 'org.json:json:20171018'
+
 }
 
 test {
