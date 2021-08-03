@@ -1,7 +1,7 @@
 package com.webapp.microservice.models;
 
 public class Diploma {
-<<<<<<< HEAD
+    
     private Interger id;
     private String name;
 
