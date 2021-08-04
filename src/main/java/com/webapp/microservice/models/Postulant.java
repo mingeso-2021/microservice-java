@@ -2,17 +2,22 @@ package com.webapp.microservice.models;
 
 public class Postulant {
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     private Interger id;
 =======
     private Integer id;
 >>>>>>> renameandconnectiondb
+=======
+    private Integer id;
+>>>>>>> Stashed changes
     private String name;
     private String rut;
     private String email;
     private String phone;
 
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     public Interger getId() {
         return this.id;
@@ -26,6 +31,13 @@ public class Postulant {
 
     public void setId(Integer id) {
 >>>>>>> renameandconnectiondb
+=======
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+>>>>>>> Stashed changes
         this.id = id;
     }
 
