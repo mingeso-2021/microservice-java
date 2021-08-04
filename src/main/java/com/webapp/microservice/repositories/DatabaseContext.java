@@ -15,11 +15,14 @@ public class DatabaseContext {
 
     @Value("${database.password}")
     private String dbPass;
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     //Definir url de la BD, usuario y password
     //Ejemplo: jdbc:postgresql://127.0.0.1:5432/postgres, usuario, password
 =======
 >>>>>>> renameandconnectiondb
+=======
+>>>>>>> Stashed changes
 
     @Bean
     public Sql2o sql2o(){
