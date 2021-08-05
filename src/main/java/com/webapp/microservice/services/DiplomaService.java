@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "diplomas")
+@RequestMapping(value = "/diplomas")
 public class DiplomaService{
 
     private final DiplomaRepository diplomaRepository;
