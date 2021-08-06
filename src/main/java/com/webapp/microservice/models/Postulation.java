@@ -8,6 +8,7 @@ public class Postulation {
     private Integer id_postulant;
     private Integer id_evaluator;
     private Integer id_secretary;
+    private int status;
 
     public Integer getId() {
         return id;
@@ -47,5 +48,13 @@ public class Postulation {
 
     public void setId_secretary(Integer id_secretary) {
         this.id_secretary = id_secretary;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(String phone) {
+        this.status = status;
     }
 }

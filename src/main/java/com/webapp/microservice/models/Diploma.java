@@ -4,6 +4,7 @@ public class Diploma {
 
     private Integer id;
     private String name;
+    private int status;
 
     public Integer getId() {
         return id;
@@ -20,4 +21,13 @@ public class Diploma {
     public void setName(String name) {
         this.name = name;
     }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus() {
+        this.status = status;
+    }
+
 }

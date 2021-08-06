@@ -38,10 +38,11 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
     public Diploma createDiploma(Diploma diploma) {
         try(Connection conn = sql2o.open()){
             int insertedId = countDiploma()+1;
-            conn.createQuery("INSERT INTO Diploma (id, name)"+
+            conn.createQuery("INSERT INTO Diploma (id, name, status)"+
             " values (:id, :diplomaName)", true)
                     .addParameter("id",  insertedId)        
                     .addParameter("diplomaName", diploma.getName())
+                    .addParameter("diplomaStatus", diploma.getStatus())
                     .executeUpdate().getKey();
                     diploma.setId(insertedId);
             return diploma;        

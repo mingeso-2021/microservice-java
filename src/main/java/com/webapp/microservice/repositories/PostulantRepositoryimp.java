@@ -38,13 +38,14 @@ public class PostulantRepositoryimp implements PostulantRepository {
     public Postulant createPostulant(Postulant postulant) {
         try(Connection conn = sql2o.open()){
             int insertedId = countPostulant()+1;
-            conn.createQuery("INSERT INTO postulant (id, name, rut, email, phone)"+
-            "values (:id, :postulantName, :postulantRut, :postulantEmail, :postulantPhone)", true)
+            conn.createQuery("INSERT INTO postulant (id, name, rut, email, phone, status)"+
+            "values (:id, :postulantName, :postulantRut, :postulantEmail, :postulantPhone, :postulantStatus)", true)
                     .addParameter("id",  insertedId)        
                     .addParameter("postulantName", postulant.getName())
                     .addParameter("postulantRut", postulant.getRut())
                     .addParameter("postulantEmail", postulant.getEmail())
                     .addParameter("postulantPhone", postulant.getPhone())
+                    .addParameter("postulantStatus", postulant.getStatus())
                     .executeUpdate().getKey();
                     postulant.setId(insertedId);
             return postulant;        
@@ -68,13 +69,14 @@ public class PostulantRepositoryimp implements PostulantRepository {
     }
     @Override
     public boolean updatePostulant(Postulant postulant){
-        String updateSql = "update postulant set name = :name, rut = :rut, email = :email, phone = :phone where id = :id";
+        String updateSql = "update postulant set name = :name, rut = :rut, email = :email, phone = :phone, status = :status where id = :id";
         try (Connection con = sql2o.open()) {   
             con.createQuery(updateSql)
                 .addParameter("name", postulant.getName())
                 .addParameter("rut", postulant.getRut())
                 .addParameter("email", postulant.getEmail())
                 .addParameter("phone", postulant.getPhone())
+                .addParameter("phone", postulant.getStatus())
                 .addParameter("id", postulant.getId())
                 .executeUpdate();
             return true;

@@ -38,13 +38,14 @@ public class EvaluatorRepositoryimp implements EvaluatorRepository {
     public Evaluator createEvaluator(Evaluator evaluator) {
         try(Connection conn = sql2o.open()){
             int insertedId = countEvaluator()+1;
-            conn.createQuery("INSERT INTO evaluator (id, name, rut, email, phone)"+
-            "values (:id, :evaluatorName, :evaluatorRut, :evaluatorEmail, :evaluatorPhone)", true)
+            conn.createQuery("INSERT INTO evaluator (id, name, rut, email, phone, status)"+
+            "values (:id, :evaluatorName, :evaluatorRut, :evaluatorEmail, :evaluatorPhone, :evaluatorStatus)", true)
                     .addParameter("id",  insertedId)        
                     .addParameter("evaluatorName", evaluator.getName())
                     .addParameter("evaluatorRut", evaluator.getRut())
                     .addParameter("evaluatorEmail", evaluator.getEmail())
                     .addParameter("evaluatorPhone", evaluator.getPhone())
+                    .addParameter("evaluatorStatus", evaluator.getStatus())
                     .executeUpdate().getKey();
                     evaluator.setId(insertedId);
             return evaluator;        
@@ -68,7 +69,7 @@ public class EvaluatorRepositoryimp implements EvaluatorRepository {
     }
     @Override
     public boolean updateEvaluator(Evaluator evaluator){
-        String updateSql = "update evaluator set name = :name, rut = :rut, email = :email, phone = :phone where id = :id";
+        String updateSql = "update evaluator set name = :name, rut = :rut, email = :email, phone = :phone, status = :status where id = :id";
         try (Connection con = sql2o.open()) {   
             con.createQuery(updateSql)
                 .addParameter("name", evaluator.getName())
@@ -76,6 +77,7 @@ public class EvaluatorRepositoryimp implements EvaluatorRepository {
                 .addParameter("email", evaluator.getEmail())
                 .addParameter("phone", evaluator.getPhone())
                 .addParameter("id", evaluator.getId())
+                .addParameter("status", evaluator.getStatus())
                 .executeUpdate();
             return true;
         }catch(Exception e){
