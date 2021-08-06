@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/uploadfiles")
 public class UploadFileService {
@@ -29,7 +29,7 @@ public class UploadFileService {
     private UploadFiles uploadFiles;
 
     @PostMapping(value="/upload")
-    public ResponseEntity<String> uploadFiles(@RequestParam("files") List<MultipartFile> files){
+    public ResponseEntity<String> uploadFiles(@RequestParam("file") List<MultipartFile> files){
         try {
             uploadFiles.save(files);
             return ResponseEntity.status(HttpStatus.OK).body("Los archivos fueron cargados correctamente al servidor");
@@ -39,7 +39,7 @@ public class UploadFileService {
         }
     }
 
-    @GetMapping(value="/fies/{filename:.+}")
+    @GetMapping(value="/files/{filename:.+}")
     public ResponseEntity<Resource> getFile(@PathVariable String fileName) throws Exception {
         Resource resource = uploadFiles.load(fileName);
         return ResponseEntity.ok()
