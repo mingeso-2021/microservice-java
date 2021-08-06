@@ -38,13 +38,14 @@ public class SecretaryRepositoryimp implements SecretaryRepository {
     public Secretary createSecretary(Secretary secretary) {
         try(Connection conn = sql2o.open()){
             int insertedId = countSecretary()+1;
-            conn.createQuery("INSERT INTO Secretary (id, name, rut, email, phone)"+
-            "values (:id, :SecretaryName, :SecretaryRut, :SecretaryEmail, :SecretaryPhone)", true)
+            conn.createQuery("INSERT INTO Secretary (id, name, rut, email, phone, status)"+
+            "values (:id, :secretaryName, :secretaryRut, :secretaryEmail, :secretaryPhone, :secretaryStatus)", true)
                     .addParameter("id",  insertedId)        
                     .addParameter("SecretaryName", secretary.getName())
                     .addParameter("SecretaryRut", secretary.getRut())
                     .addParameter("SecretaryEmail", secretary.getEmail())
                     .addParameter("SecretaryPhone", secretary.getPhone())
+                    .addParameter("SecretaryStatus", secretary.getStatus())
                     .executeUpdate().getKey();
                     secretary.setId(insertedId);
             return secretary;        
@@ -68,13 +69,14 @@ public class SecretaryRepositoryimp implements SecretaryRepository {
     }
     @Override
     public boolean updateSecretary(Secretary secretary){
-        String updateSql = "update secretary set name = :name, rut = :rut, email = :email, phone = :phone where id = :id";
+        String updateSql = "update secretary set name = :name, rut = :rut, email = :email, phone = :phone, status = :status where id = :id";
         try (Connection con = sql2o.open()) {   
             con.createQuery(updateSql)
                 .addParameter("name", secretary.getName())
                 .addParameter("rut", secretary.getRut())
                 .addParameter("email", secretary.getEmail())
                 .addParameter("phone", secretary.getPhone())
+                .addParameter("status", secretary.getStatus())
                 .addParameter("id", secretary.getId())
                 .executeUpdate();
             return true;

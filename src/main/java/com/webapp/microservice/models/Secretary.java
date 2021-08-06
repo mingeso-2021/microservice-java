@@ -2,12 +2,12 @@ package com.webapp.microservice.models;
 
 public class Secretary {
 
-
     private Integer id;
     private String name;
     private String rut;
     private String email;
     private String phone;
+    private int status;
 
     public Integer getId() {
         return id;
@@ -47,5 +47,13 @@ public class Secretary {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(String phone) {
+        this.status = status;
     }
 }
