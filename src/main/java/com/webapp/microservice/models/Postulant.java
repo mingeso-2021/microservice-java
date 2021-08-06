@@ -7,6 +7,7 @@ public class Postulant {
     private String rut;
     private String email;
     private String phone;
+    private int status;
 
     public Integer getId() {
         return id;
@@ -46,5 +47,13 @@ public class Postulant {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(String phone) {
+        this.status = status;
     }
 }

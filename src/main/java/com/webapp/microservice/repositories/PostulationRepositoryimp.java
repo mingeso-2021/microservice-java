@@ -38,13 +38,14 @@ public class PostulationRepositoryimp implements PostulationRepository {
     public Postulation createPostulation(Postulation postulation) {
         try(Connection conn = sql2o.open()){
             int insertedId = countPostulation()+1;
-            conn.createQuery("INSERT INTO postulation (id, id_diploma, id_postulant, id_evaluator, id_secretary)"+
-            "values (:id, :postulationId_diploma, :postulationId_postulant, :postulationId_evaluator, :postulationId_secretary)", true)
+            conn.createQuery("INSERT INTO postulation (id, id_diploma, id_postulant, id_evaluator, id_secretary, status)"+
+            "values (:id, :postulationId_diploma, :postulationId_postulant, :postulationId_evaluator, :postulationId_secretary, :postulationId_status)", true)
                     .addParameter("id",  insertedId)        
                     .addParameter("postulationId_diploma", postulation.getId_diploma())
                     .addParameter("postulationId_postulant", postulation.getId_postulant())
                     .addParameter("postulationId_evaluator", postulation.getId_evaluator())
                     .addParameter("postulationId_secretary", postulation.getId_secretary())
+                    .addParameter("postulationId_status", postulation.getStatus())
                     .executeUpdate().getKey();
                     postulation.setId(insertedId);
             return postulation;        
