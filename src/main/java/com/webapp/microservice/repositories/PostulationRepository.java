@@ -7,6 +7,6 @@ public interface PostulationRepository {
     public List<Postulation> getAllPostulation();
     public Postulation createPostulation(Postulation postulation);
     public boolean deletePostulation(int id);
-    public boolean updatePostulation(Postulation postulation);
+    public void updatePostulation(int id, Postulation postulation);
     public Postulation getPostulation(int id);
 }

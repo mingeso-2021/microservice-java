@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-
+import org.sql2o.Query;
 import java.util.List;
 
 @Repository
@@ -68,20 +68,23 @@ public class PostulationRepositoryimp implements PostulationRepository {
 
     }
     @Override
-    public boolean updatePostulation(Postulation postulation){
-        String updateSql = "update postulation set id_diploma = :id_diploma, id_postulant = :id_postulant, id_evaluator = :id_evaluator, id_secretary = :id_secretary where id = :id";
-        try (Connection con = sql2o.open()) {   
-            con.createQuery(updateSql)
-                .addParameter("id_diploma", postulation.getId_diploma())
-                .addParameter("id_postulant", postulation.getId_postulant())
-                .addParameter("id_evaluator", postulation.getId_evaluator())
-                .addParameter("id_secretary", postulation.getId_secretary())
-                .addParameter("id", postulation.getId())
-                .executeUpdate();
-            return true;
+    public void updatePostulation(int id, Postulation postulation){
+        String updateSql = "update postulation set status = :status where id = :idParam";
+        try (Connection con = sql2o.open()) {
+            // search postulant by id (if exists)
+            Postulation oldPostulation = con.createQuery( "SELECT * FROM postulation where id = :idPostulation" )
+                .addParameter("idPostulation", id)
+                .executeAndFetchFirst( Postulation.class);
+            // generate query for update a postulant
+            Query query = con.createQuery(updateSql);
+            query.addParameter("idParam", id);
+            if ( postulation.getStatus() != null ) query.addParameter("status", postulation.getStatus());
+            else query.addParameter("status", oldPostulation.getStatus());
+            // execute query
+            query.executeUpdate();
+            System.out.println("Postulation -status- has been successfully updated");
         }catch(Exception e){
             System.out.println(e.getMessage());
-            return false;
         }
 
     }

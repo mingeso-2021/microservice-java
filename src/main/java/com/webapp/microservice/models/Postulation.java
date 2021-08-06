@@ -2,13 +2,12 @@ package com.webapp.microservice.models;
 
 public class Postulation {
 
-
     private Integer id;
     private Integer id_diploma;
     private Integer id_postulant;
     private Integer id_evaluator;
     private Integer id_secretary;
-    private int status;
+    private Integer status;
 
     public Integer getId() {
         return id;
@@ -50,11 +49,11 @@ public class Postulation {
         this.id_secretary = id_secretary;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String phone) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }
