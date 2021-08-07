@@ -18,9 +18,8 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
     public Integer countDiploma() {
         final Integer total;
         Connection conn = sql2o.open();
-        final String query = "SELECT COUNT(*) FROM diploma";
         try(conn){
-            total = conn.createQuery(query).executeScalar(Integer.class);
+            total = conn.createQuery("SELECT COUNT(*) FROM diploma").executeScalar(Integer.class);
             return total;
         }
         catch (Exception e){
@@ -28,9 +27,7 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
             return null;
         }
         finally {
-            if(conn != null){
-                conn.close();
-            }
+            conn.close();
         }
     }
 
