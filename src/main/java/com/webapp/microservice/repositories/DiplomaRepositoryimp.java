@@ -16,16 +16,20 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
 
     @Override
     public Integer countDiploma() {
-        final int total;
+        final Integer total;
+        Connection conn = null;
         final String query = "SELECT COUNT(*) FROM diploma";
-        try(Connection conn = sql2o.open()){
+        try{
+            conn = sql2o.open();
             total = conn.createQuery(query).executeScalar(Integer.class);
-            conn.close();
             return total;
         }
         catch (Exception e){
             System.out.println(e.getMessage());
             return null;
+        }
+        finally {
+            conn.close();
         }
     }
 
