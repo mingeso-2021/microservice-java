@@ -53,7 +53,7 @@ public class Postulant {
         return status;
     }
 
-    public void setStatus(String phone) {
+    public void setStatus(int status) {
         this.status = status;
     }
 }

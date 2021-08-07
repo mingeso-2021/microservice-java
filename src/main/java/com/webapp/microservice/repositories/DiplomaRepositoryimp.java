@@ -16,17 +16,19 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
 
     @Override
     public int countDiploma() {
-        int total = 0;
+        final int total;
+        final String query = "SELECT COUNT(*) FROM diploma";
         try(Connection conn = sql2o.open()){
-            total = conn.createQuery("SELECT COUNT(*) FROM diploma").executeScalar(Integer.class);
+            total = conn.createQuery(query).executeScalar(Integer.class);
         }
         return total;
     }
 
     @Override
     public List<Diploma> getAllDiploma() {
+        final String query = "select * from diploma";
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from diploma")
+            return conn.createQuery(query)
                     .executeAndFetch(Diploma.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -38,8 +40,8 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
     public Diploma createDiploma(Diploma diploma) {
         try(Connection conn = sql2o.open()){
             int insertedId = countDiploma()+1;
-            conn.createQuery("INSERT INTO Diploma (id, name, status)"+
-            " values (:id, :diplomaName)", true)
+            final String query = "INSERT INTO Diploma (id, name, status) values (:id, :diplomaName)";
+            conn.createQuery(query, true)
                     .addParameter("id",  insertedId)        
                     .addParameter("diplomaName", diploma.getName())
                     .addParameter("diplomaStatus", diploma.getStatus())
@@ -54,8 +56,9 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
     }
     @Override
     public boolean deleteDiploma(int id){
+        final String query = "DELETE FROM diploma WHERE id = :id";
         try(Connection conn = sql2o.open()){
-            conn.createQuery("DELETE FROM diploma WHERE id = :id").addParameter("id", id)
+            conn.createQuery(query).addParameter("id", id)
             .executeUpdate();
             return true; 
         }catch(Exception e){
@@ -66,7 +69,7 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
     }
     @Override
     public boolean updateDiploma(Diploma diploma){
-        String updateSql = "update diploma set name = :name where id = :id";
+        final String updateSql = "update diploma set name = :name where id = :id";
         try (Connection con = sql2o.open()) {   
             con.createQuery(updateSql)
                 .addParameter("name", diploma.getName())
@@ -82,8 +85,7 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
 
     @Override
     public Diploma getDiploma(int id){
-		String sql = "SELECT * FROM diploma where id=:id";
-
+		final String sql = "SELECT * FROM diploma where id=:id";
 		try (Connection con = sql2o.open()) {
 			return con.createQuery(sql)
 				.addParameter("id", id)
