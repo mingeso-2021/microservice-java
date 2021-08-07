@@ -17,11 +17,11 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
     @Override
     public Integer countDiploma() {
         final Integer total;
-        Connection conn = null;
+        Connection conn = sql2o.open();
         final String query = "SELECT COUNT(*) FROM diploma";
-        try{
-            conn = sql2o.open();
+        try(conn){
             total = conn.createQuery(query).executeScalar(Integer.class);
+            return total;
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -32,7 +32,6 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
                 conn.close();
             }
         }
-        return total;
     }
 
     @Override
