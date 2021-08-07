@@ -29,5 +29,5 @@ public class Diploma {
     public void setStatus() {
         this.status = status;
     }
-
+ 
 }
