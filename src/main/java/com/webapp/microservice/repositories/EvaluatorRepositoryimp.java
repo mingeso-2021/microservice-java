@@ -17,26 +17,40 @@ public class EvaluatorRepositoryimp implements EvaluatorRepository {
     @Override
     public int countEvaluator() {
         int total = 0;
-        try(Connection conn = sql2o.open()){
+        Connection conn = sql2o.open();
+        try(conn){
             total = conn.createQuery("SELECT COUNT(*) FROM evaluator").executeScalar(Integer.class);
+            return total;
         }
-        return total;
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return -1;
+        }
+        finally {
+            conn.close();
+        }
+
     }
 
     @Override
     public List<Evaluator> getAllEvaluator() {
-        try(Connection conn = sql2o.open()){
+        Connection conn = sql2o.open();
+        try(conn){
             return conn.createQuery("select * from evaluator")
                     .executeAndFetch(Evaluator.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
+        finally {
+            conn.close();
+        }
     }
 
     @Override
     public Evaluator createEvaluator(Evaluator evaluator) {
-        try(Connection conn = sql2o.open()){
+        Connection conn = sql2o.open();
+        try(conn){
             int insertedId = countEvaluator()+1;
             conn.createQuery("INSERT INTO evaluator (id, name, rut, email, phone, status)"+
             "values (:id, :evaluatorName, :evaluatorRut, :evaluatorEmail, :evaluatorPhone, :evaluatorStatus)", true)
@@ -53,25 +67,32 @@ public class EvaluatorRepositoryimp implements EvaluatorRepository {
             System.out.println(e.getMessage());
             return null;
         }
+        finally {
+            conn.close();
+        }
         
     }
     @Override
     public boolean deleteEvaluator(int id){
-        try(Connection conn = sql2o.open()){
+        Connection conn = sql2o.open();
+        try(conn){
             conn.createQuery("DELETE FROM evaluator WHERE id = :id").addParameter("id", id)
             .executeUpdate();
             return true; 
         }catch(Exception e){
             System.out.println(e.getMessage());
             return false;
+        }finally {
+            conn.close();
         }
 
     }
     @Override
     public boolean updateEvaluator(Evaluator evaluator){
         String updateSql = "update evaluator set name = :name, rut = :rut, email = :email, phone = :phone, status = :status where id = :id";
-        try (Connection con = sql2o.open()) {   
-            con.createQuery(updateSql)
+        Connection conn = sql2o.open();
+        try (conn) {
+            conn.createQuery(updateSql)
                 .addParameter("name", evaluator.getName())
                 .addParameter("rut", evaluator.getRut())
                 .addParameter("email", evaluator.getEmail())
@@ -83,6 +104,8 @@ public class EvaluatorRepositoryimp implements EvaluatorRepository {
         }catch(Exception e){
             System.out.println(e.getMessage());
             return false;
+        }finally {
+            conn.close();
         }
 
     }
@@ -90,14 +113,20 @@ public class EvaluatorRepositoryimp implements EvaluatorRepository {
     @Override
     public Evaluator getEvaluator(int id){
 		String sql = "SELECT * FROM evaluator where id=:id";
+		Evaluator evaluator;
+        Connection conn = sql2o.open();
+		try (conn) {
+			evaluator = conn.createQuery(sql)
+                        .addParameter("id", id)
+                        .executeAndFetchFirst(Evaluator.class);
+			return evaluator;
 
-		try (Connection con = sql2o.open()) {
-			return con.createQuery(sql)
-				.addParameter("id", id)
-				.executeAndFetchFirst(Evaluator.class);
 		}catch(Exception e){
             System.out.println(e.getMessage());
             return null;
+        }
+        finally {
+            conn.close();
         }
 	}
 
