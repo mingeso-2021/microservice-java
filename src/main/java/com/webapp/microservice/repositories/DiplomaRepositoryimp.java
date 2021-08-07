@@ -22,15 +22,17 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
         try{
             conn = sql2o.open();
             total = conn.createQuery(query).executeScalar(Integer.class);
-            return total;
         }
         catch (Exception e){
             System.out.println(e.getMessage());
             return null;
         }
         finally {
-            conn.close();
+            if(conn != null){
+                conn.close();
+            }
         }
+        return total;
     }
 
     @Override
