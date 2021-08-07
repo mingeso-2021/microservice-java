@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -35,12 +36,14 @@ public class EvaluatorRepositoryimp implements EvaluatorRepository {
     @Override
     public List<Evaluator> getAllEvaluator() {
         Connection conn = sql2o.open();
+        List<Evaluator> evaluators = Collections.emptyList();
         try(conn){
-            return conn.createQuery("select * from evaluator")
+            evaluators = conn.createQuery("select * from evaluator")
                     .executeAndFetch(Evaluator.class);
+            return evaluators;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return null;
+            return evaluators;
         }
         finally {
             conn.close();
@@ -120,7 +123,6 @@ public class EvaluatorRepositoryimp implements EvaluatorRepository {
                         .addParameter("id", id)
                         .executeAndFetchFirst(Evaluator.class);
 			return evaluator;
-
 		}catch(Exception e){
             System.out.println(e.getMessage());
             return null;
