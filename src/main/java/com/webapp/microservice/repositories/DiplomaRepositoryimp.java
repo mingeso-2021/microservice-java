@@ -16,7 +16,7 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
 
     @Override
     public Integer countDiploma() {
-        final Integer total;
+        Integer total = 0;
         Connection conn = sql2o.open();
         try(conn){
             total = conn.createQuery("SELECT COUNT(*) FROM diploma").executeScalar(Integer.class);
