@@ -15,11 +15,22 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
     private Sql2o sql2o;
 
     @Override
-    public int countDiploma() {
-        final int total;
+    public Integer countDiploma() {
+        final Integer total;
+        Connection conn = null;
         final String query = "SELECT COUNT(*) FROM diploma";
-        try(Connection conn = sql2o.open()){
+        try{
+            conn = sql2o.open();
             total = conn.createQuery(query).executeScalar(Integer.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+        finally {
+            if(conn != null){
+                conn.close();
+            }
         }
         return total;
     }
@@ -27,9 +38,10 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
     @Override
     public List<Diploma> getAllDiploma() {
         final String query = "select * from diploma";
+        final List<Diploma> diplomas;
         try(Connection conn = sql2o.open()){
-            return conn.createQuery(query)
-                    .executeAndFetch(Diploma.class);
+            diplomas = conn.createQuery(query).executeAndFetch(Diploma.class);
+            return diplomas;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
