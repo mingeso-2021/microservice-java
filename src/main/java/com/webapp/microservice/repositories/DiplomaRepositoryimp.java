@@ -20,6 +20,7 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
         final String query = "SELECT COUNT(*) FROM diploma";
         try(Connection conn = sql2o.open()){
             total = conn.createQuery(query).executeScalar(Integer.class);
+            conn.close();
         }
         return total;
     }
