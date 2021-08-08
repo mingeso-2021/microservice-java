@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -34,14 +35,14 @@ public class PostulantRepositoryimp implements PostulantRepository {
     @Override
     public List<Postulant> getAllPostulant() {
         Connection conn = sql2o.open();
-        List<Postulant> applicants;
+        List<Postulant> applicants = Collections.emptyList();
         try(conn){
-            applicants=conn.createQuery("select * from postulant")
+            applicants = conn.createQuery("select * from postulant")
                     .executeAndFetch(Postulant.class);
             return applicants;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return null;
+            return applicants;
         }
         finally {
             conn.close();

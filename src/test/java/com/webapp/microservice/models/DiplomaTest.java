@@ -9,42 +9,42 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest
-public class DiplomaTest{
+class DiplomaTest{
 
     private Diploma diploma = new Diploma(1, "diploma1", 1);
 
     @Test
-    public void testGetId() {
+    void testGetId() {
         Integer number = 1;
         assertEquals(number, diploma.getId());
     }
 
     @Test
-    public void testSetId() {
+    void testSetId() {
         Integer newId = 7;
         diploma.setId(newId);
         assertEquals(newId, diploma.getId());
     }
 
     @Test
-    public void testGetName() {
+    void testGetName() {
         assertEquals("diploma1", diploma.getName());
     }
 
     @Test
-    public void testSetName() {
+    void testSetName() {
         String newName = "diplomaTesting";
         diploma.setName(newName);
         assertEquals("diplomaTesting", diploma.getName());
     }
 
     @Test
-    public void testGetStatus() {
+    void testGetStatus() {
         assertEquals(1, diploma.getStatus());
     }
 
     @Test
-    public void testSetStatus() {
+    void testSetStatus() {
         int newStatus = 0;
         diploma.setStatus(newStatus);
         assertEquals(0, diploma.getStatus());
