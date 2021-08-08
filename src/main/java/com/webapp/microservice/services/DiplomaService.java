@@ -32,8 +32,7 @@ public class DiplomaService{
     @PostMapping("/create")
     @ResponseBody
     public Diploma createDiploma(@RequestBody Diploma diploma){
-        Diploma result = diplomaRepository.createDiploma(diploma);
-        return result;
+        return diplomaRepository.createDiploma(diploma);
     }
 
     @GetMapping("/delete/{id}")

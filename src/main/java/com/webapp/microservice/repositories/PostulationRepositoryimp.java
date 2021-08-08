@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Query;
+
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -33,13 +35,15 @@ public class PostulationRepositoryimp implements PostulationRepository {
 
     @Override
     public List<Postulation> getAllPostulation() {
+        List<Postulation> postulations = Collections.emptyList();
         Connection conn = sql2o.open();
         try(conn){
-            return conn.createQuery("select * from postulation")
+            postulations = conn.createQuery("select * from postulation")
                     .executeAndFetch(Postulation.class);
+            return postulations;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return null;
+            return postulations;
         }finally {
             conn.close();
         }

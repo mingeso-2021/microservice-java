@@ -28,8 +28,7 @@ public class EvaluatorService{
     @PostMapping("/create")
     @ResponseBody
     public Evaluator createEvaluator(@RequestBody Evaluator evaluator){
-        Evaluator result = evaluatorRepository.createEvaluator(evaluator);
-        return result;
+        return evaluatorRepository.createEvaluator(evaluator);
     }
 
     @GetMapping("/delete/{id}")

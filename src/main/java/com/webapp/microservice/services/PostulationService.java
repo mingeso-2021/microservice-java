@@ -29,8 +29,7 @@ public class PostulationService{
     @PostMapping("/create")
     @ResponseBody
     public Postulation createPostulation(@RequestBody Postulation postulation){
-        Postulation result = postulationRepository.createPostulation(postulation);
-        return result;
+        return postulationRepository.createPostulation(postulation);
     }
 
     @GetMapping("/delete/{id}")

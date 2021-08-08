@@ -29,8 +29,7 @@ public class SecretaryService{
     @PostMapping("/create")
     @ResponseBody
     public Secretary createSecretary(@RequestBody Secretary secretary){
-        Secretary result = secretaryRepository.createSecretary(secretary);
-        return result;
+        return secretaryRepository.createSecretary(secretary);
     }
 
     @GetMapping("/delete/{id}")
