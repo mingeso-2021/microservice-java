@@ -4,7 +4,7 @@ import com.webapp.microservice.repositories.EvaluatorRepository;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "evaluators")
 public class EvaluatorService{
