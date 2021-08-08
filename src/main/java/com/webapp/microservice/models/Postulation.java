@@ -9,6 +9,15 @@ public class Postulation {
     private Integer id_secretary;
     private Integer status;
 
+    public Postulation(Integer id, Integer id_diploma, Integer id_postulant, Integer id_evaluator,Integer id_secretary,Integer status) {
+        this.id = id;
+        this.id_diploma = id_diploma;
+        this.id_postulant = id_postulant;
+        this.id_evaluator = id_evaluator;
+        this.id_secretary = id_secretary;
+        this.status = status;
+    }
+
     public Integer getId() {
         return id;
     }

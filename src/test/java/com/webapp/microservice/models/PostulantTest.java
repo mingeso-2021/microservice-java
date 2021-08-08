@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class PostulantTest{
 
-    private Postulant postulant = new postulant(1, "postulant1", "10.310.326-1", "postu@hotmail.com" , "+56967829574", 1);
+    private Postulant postulant = new Postulant(1, "postulant1", "10.310.326-1", "postu@hotmail.com" , "+56967829574", 1);
 
     @Test
     public void testGetId() {

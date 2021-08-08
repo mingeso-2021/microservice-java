@@ -76,7 +76,8 @@ public class PostulationTest{
 
     @Test
     public void testGetStatus() {
-        assertEquals(1, postulation.getStatus());
+        int val=1;
+        assertEquals(val, postulation.getStatus());
     }
 
     @Test
