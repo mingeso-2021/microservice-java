@@ -6,6 +6,12 @@ public class Diploma {
     private String name;
     private int status;
 
+    public Diploma(Integer id, String name, int status) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+    }
+
     public Integer getId() {
         return id;
     }
