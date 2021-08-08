@@ -1,7 +1,6 @@
 package com.webapp.microservice.models;
 
 public class Diploma {
-
     private Integer id;
     private String name;
     private int status;

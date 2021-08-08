@@ -9,6 +9,7 @@ public class Evaluator {
     private String phone;
     private int status;
 
+
     public Integer getId() {
         return id;
     }

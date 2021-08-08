@@ -9,6 +9,7 @@ public class Postulant {
     private String phone;
     private int status;
 
+
     public Integer getId() {
         return id;
     }
