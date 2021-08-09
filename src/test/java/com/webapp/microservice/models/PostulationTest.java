@@ -76,15 +76,15 @@ public class PostulationTest{
 
     @Test
     public void testGetStatus() {
-        int val=1;
+        Integer val=1;
         assertEquals(val, postulation.getStatus());
     }
 
     @Test
     public void testSetStatus() {
-        int newStatus = 0;
+        Integer newStatus = 0;
         postulation.setStatus(newStatus);
-        assertEquals(0, postulation.getStatus());
+        assertEquals(newStatus, postulation.getStatus());
     }
 
 }

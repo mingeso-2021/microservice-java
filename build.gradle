@@ -5,6 +5,7 @@ plugins {
     id 'org.springframework.experimental.aot' version '0.10.1'
     id 'org.graalvm.buildtools.native' version '0.9.1'
     id "org.sonarqube" version "3.1.1"
+    id "jacoco"
 }
 
 group = 'com.webapp'
@@ -37,6 +38,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 }
 
+
 test {
     useJUnitPlatform()
 }
@@ -44,4 +46,10 @@ test {
 bootBuildImage {
     builder = 'paketobuildpacks/builder:tiny'
     environment = ['BP_NATIVE_IMAGE': 'true']
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
 }
