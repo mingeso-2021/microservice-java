@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +25,9 @@ public class SeleniumTest {
   @BeforeAll
   public static void setUp(){
     System.setProperty("webdriver.chrome.driver","./src/test/resources/chromedriver/chromedriver.exe");
-    driver = new ChromeDriver();
+    ChromeOptions chromeOptions = new ChromeOptions();
+    chromeOptions.addArguments("--headless");
+    driver = new ChromeDriver(chromeOptions);
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
