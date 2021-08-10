@@ -42,13 +42,13 @@ class DiplomaServiceTest {
         String extra = "Tienes en total 5 de la lista.";
         Mockito.when(diplomaService.countDiploma()).thenReturn(extra);
     }
-    /*
+
     @Test
     void testCountDiploma() throws Exception{
         RestTemplate restTemplate = new RestTemplate();
         String value = restTemplate.getForObject(url+"/count", String.class);
         System.out.println("value = " + value);
         assertEquals(value, diplomaService.countDiploma());
-    }*/
+    }
 
 }

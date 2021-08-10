@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class PostulationTest{
 
-    private Postulation postulation = new Postulation(1, 1, 1, 1 , 1, 1);
+    private Postulation postulation = new Postulation(1, 1, 1, 1 , 1, "pendiente");
 
     @Test
     void testGetId() {
@@ -76,13 +76,13 @@ class PostulationTest{
 
     @Test
     void testGetStatus() {
-        Integer val=1;
+        String val= "pendiente";
         assertEquals(val, postulation.getStatus());
     }
 
     @Test
     void testSetStatus() {
-        Integer newStatus = 0;
+        String newStatus = "aprobado";
         postulation.setStatus(newStatus);
         assertEquals(newStatus, postulation.getStatus());
     }

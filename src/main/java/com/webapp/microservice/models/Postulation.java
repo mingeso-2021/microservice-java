@@ -7,9 +7,9 @@ public class Postulation {
     private Integer id_postulant;
     private Integer id_evaluator;
     private Integer id_secretary;
-    private Integer status;
+    private String status;
 
-    public Postulation(Integer id, Integer id_diploma, Integer id_postulant, Integer id_evaluator,Integer id_secretary,Integer status) {
+    public Postulation(Integer id, Integer id_diploma, Integer id_postulant, Integer id_evaluator,Integer id_secretary,String status) {
         this.id = id;
         this.id_diploma = id_diploma;
         this.id_postulant = id_postulant;
@@ -58,11 +58,11 @@ public class Postulation {
         this.id_secretary = id_secretary;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }
