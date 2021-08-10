@@ -53,13 +53,14 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
         Connection conn = sql2o.open();
         try(conn){
             int insertedId = countDiploma()+1;
-            final String query = "INSERT INTO Diploma (id, name, status) values (:id, :diplomaName)";
+            final String query = "INSERT INTO diploma (id, name, status) values (:id, :diplomaName, :diplomaStatus)";
             conn.createQuery(query, true)
-                    .addParameter("id",  insertedId)        
+                    .addParameter("id", insertedId)
                     .addParameter("diplomaName", diploma.getName())
                     .addParameter("diplomaStatus", diploma.getStatus())
                     .executeUpdate().getKey();
                     diploma.setId(insertedId);
+            System.out.println("Diploma has been successfully created");
             return diploma;        
         }catch(Exception e){
             System.out.println(e.getMessage());
