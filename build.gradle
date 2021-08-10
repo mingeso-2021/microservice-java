@@ -13,8 +13,9 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
-    maven { url 'https://repo.spring.io/release' }
     mavenCentral()
+    maven { url 'https://repo.spring.io/release' }
+
 }
 
 sonarqube {
@@ -36,6 +37,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
+
+    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.4.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.1'
+
 }
 
 
