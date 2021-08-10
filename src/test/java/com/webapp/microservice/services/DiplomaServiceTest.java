@@ -44,9 +44,10 @@ class DiplomaServiceTest {
     }
 
     @Test
-    public void testCountDiploma(){
+    void testCountDiploma(){
         RestTemplate restTemplate = new RestTemplate();
         String value = restTemplate.getForObject(url+"/count", String.class);
+        System.out.println("value = " + value);
         assertEquals(value, diplomaService.countDiploma());
     }
 
