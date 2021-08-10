@@ -26,7 +26,7 @@ public class DiplomaService{
     @GetMapping("/count")
     public String countDiploma(){
         int total = diplomaRepository.countDiploma();
-        return String.format("Tienes en total, %s de la lista.", total);
+        return String.format("Tienes en total %s de la lista.", total);
     }
 
     @PostMapping("/create")

@@ -24,7 +24,7 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
         }
         catch (Exception e){
             System.out.println(e.getMessage());
-            return null;
+            return -1;
         }
         finally {
             conn.close();
