@@ -57,7 +57,7 @@ class DiplomaServiceTest {
         //Mockito.when(diplomaService.getAllDiploma()).thenReturn(diplomas);
 
     }
-
+    /*
     @Test
     void testCountDiploma() throws Exception{
         RestTemplate restTemplate = new RestTemplate();
@@ -65,7 +65,7 @@ class DiplomaServiceTest {
         System.out.println("value = " + value);
         assertEquals(value, diplomaService.countDiploma());
     }
-    /*
+
     @Test
     void testGetAllDiploma() throws Exception{
         RestTemplate restTemplate = new RestTemplate();
