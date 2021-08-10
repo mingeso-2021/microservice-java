@@ -41,7 +41,6 @@ dependencies {
     implementation 'org.json:json:20171018'
     testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.4.0'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.1'
-
 }
 
 
