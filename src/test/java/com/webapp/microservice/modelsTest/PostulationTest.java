@@ -1,4 +1,5 @@
-package com.webapp.microservice.models;
+package com.webapp.microservice.modelsTest;
+import com.webapp.microservice.models.Postulation;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;

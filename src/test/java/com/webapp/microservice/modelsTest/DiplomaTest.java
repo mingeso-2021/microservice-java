@@ -1,5 +1,6 @@
-package com.webapp.microservice.models;
+package com.webapp.microservice.modelsTest;
 
+import com.webapp.microservice.models.Diploma;
 import org.junit.jupiter.api.Test;
 
 

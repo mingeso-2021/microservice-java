@@ -1,10 +1,11 @@
-package com.webapp.microservice.services;
+package com.webapp.microservice.servicesTest;
 
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.webapp.microservice.models.Diploma;
 import com.webapp.microservice.repositories.DiplomaRepositoryimp;
+import com.webapp.microservice.services.DiplomaService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -77,7 +78,8 @@ class DiplomaServiceTest {
         assertTrue(diplomaService.getAllDiploma().equals(diplomas));
 
     }
-    
      */
+    
+
 
 }
