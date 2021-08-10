@@ -38,7 +38,7 @@ class DiplomaServiceTest {
 
     @BeforeEach
     void setUp(){
-        url = String.format("http://localhost:%d/diplomas", port);
+        url = String.format("http://143.110.148.226:%d/diplomas", port);
         String extra = "Tienes en total 5 de la lista.";
         Mockito.when(diplomaService.countDiploma()).thenReturn(extra);
     }
