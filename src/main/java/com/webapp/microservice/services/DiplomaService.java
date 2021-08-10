@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/diplomas")
 public class DiplomaService{
@@ -26,14 +26,13 @@ public class DiplomaService{
     @GetMapping("/count")
     public String countDiploma(){
         int total = diplomaRepository.countDiploma();
-        return String.format("Tienes en total, %s de la lista.", total);
+        return String.format("Tienes en total %s de la lista.", total);
     }
 
     @PostMapping("/create")
     @ResponseBody
     public Diploma createDiploma(@RequestBody Diploma diploma){
-        Diploma result = diplomaRepository.createDiploma(diploma);
-        return result;
+        return diplomaRepository.createDiploma(diploma);
     }
 
     @GetMapping("/delete/{id}")

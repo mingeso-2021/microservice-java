@@ -5,7 +5,7 @@ import com.webapp.microservice.repositories.PostulantRepository;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "postulants")
 public class PostulantService{
@@ -29,8 +29,7 @@ public class PostulantService{
     @PostMapping("/create")
     @ResponseBody
     public Postulant createPostulant(@RequestBody Postulant postulant){
-        Postulant result = postulantRepository.createPostulant(postulant);
-        return result;
+        return  postulantRepository.createPostulant(postulant);
     }
 
     @GetMapping("/delete/{id}")

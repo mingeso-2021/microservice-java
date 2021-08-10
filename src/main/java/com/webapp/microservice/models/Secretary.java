@@ -8,6 +8,14 @@ public class Secretary {
     private String email;
     private String phone;
     private int status;
+    public Secretary(Integer id, String name, String rut,String email,String phone,int status) {
+        this.id = id;
+        this.name = name;
+        this.rut = rut;
+        this.email = email;
+        this.phone = phone;
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
@@ -53,7 +61,7 @@ public class Secretary {
         return status;
     }
 
-    public void setStatus(String phone) {
+    public void setStatus(int status) {
         this.status = status;
     }
 }

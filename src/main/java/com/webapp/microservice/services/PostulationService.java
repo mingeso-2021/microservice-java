@@ -5,7 +5,7 @@ import com.webapp.microservice.repositories.PostulationRepository;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "postulations")
 public class PostulationService{
@@ -29,8 +29,7 @@ public class PostulationService{
     @PostMapping("/create")
     @ResponseBody
     public Postulation createPostulation(@RequestBody Postulation postulation){
-        Postulation result = postulationRepository.createPostulation(postulation);
-        return result;
+        return postulationRepository.createPostulation(postulation);
     }
 
     @GetMapping("/delete/{id}")
@@ -38,9 +37,11 @@ public class PostulationService{
         return postulationRepository.deletePostulation(id);
     }
 
-    @PostMapping("/update")
-    public boolean updatePostulation(@RequestBody Postulation postulation){
-         return postulationRepository.updatePostulation(postulation);
+    @PutMapping("/update/{id}")
+    @ResponseBody
+    public void updatePostulation(@PathVariable(value = "id") int id, @RequestBody Postulation postulation){
+        System.out.println("Esta llegando: " + postulation.getStatus());
+        postulationRepository.updatePostulation( id, postulation );
     }
 
     @GetMapping("/getbyid/{id}")

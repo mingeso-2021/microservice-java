@@ -1,10 +1,15 @@
 package com.webapp.microservice.models;
 
 public class Diploma {
-
     private Integer id;
     private String name;
     private int status;
+
+    public Diploma(Integer id, String name, int status) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
@@ -26,7 +31,7 @@ public class Diploma {
         return status;
     }
 
-    public void setStatus() {
+    public void setStatus(int status) {
         this.status = status;
     }
 

@@ -15,31 +15,46 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
     private Sql2o sql2o;
 
     @Override
-    public int countDiploma() {
-        int total = 0;
-        try(Connection conn = sql2o.open()){
+    public Integer countDiploma() {
+        Integer total = 0;
+        Connection conn = sql2o.open();
+        try(conn){
             total = conn.createQuery("SELECT COUNT(*) FROM diploma").executeScalar(Integer.class);
+            return total;
         }
-        return total;
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return -1;
+        }
+        finally {
+            conn.close();
+        }
     }
 
     @Override
     public List<Diploma> getAllDiploma() {
-        try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from diploma")
-                    .executeAndFetch(Diploma.class);
+        final String query = "select * from diploma";
+        final List<Diploma> diplomas;
+        Connection conn = sql2o.open();
+        try(conn){
+            diplomas = conn.createQuery(query).executeAndFetch(Diploma.class);
+            return diplomas;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
+        }
+        finally {
+            conn.close();
         }
     }
 
     @Override
     public Diploma createDiploma(Diploma diploma) {
-        try(Connection conn = sql2o.open()){
+        Connection conn = sql2o.open();
+        try(conn){
             int insertedId = countDiploma()+1;
-            conn.createQuery("INSERT INTO Diploma (id, name, status)"+
-            " values (:id, :diplomaName)", true)
+            final String query = "INSERT INTO Diploma (id, name, status) values (:id, :diplomaName)";
+            conn.createQuery(query, true)
                     .addParameter("id",  insertedId)        
                     .addParameter("diplomaName", diploma.getName())
                     .addParameter("diplomaStatus", diploma.getStatus())
@@ -50,25 +65,34 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
             System.out.println(e.getMessage());
             return null;
         }
-        
+        finally {
+            conn.close();
+        }
     }
+
     @Override
     public boolean deleteDiploma(int id){
-        try(Connection conn = sql2o.open()){
-            conn.createQuery("DELETE FROM diploma WHERE id = :id").addParameter("id", id)
+        final String query = "DELETE FROM diploma WHERE id = :id";
+        Connection conn = sql2o.open();
+        try(conn){
+            conn.createQuery(query).addParameter("id", id)
             .executeUpdate();
             return true; 
         }catch(Exception e){
             System.out.println(e.getMessage());
             return false;
         }
+        finally {
+            conn.close();
+        }
 
     }
     @Override
     public boolean updateDiploma(Diploma diploma){
-        String updateSql = "update diploma set name = :name where id = :id";
-        try (Connection con = sql2o.open()) {   
-            con.createQuery(updateSql)
+        final String updateSql = "update diploma set name = :name where id = :id";
+        Connection conn = sql2o.open();
+        try (conn) {
+            conn.createQuery(updateSql)
                 .addParameter("name", diploma.getName())
                 .addParameter("id", diploma.getId())
                 .executeUpdate();
@@ -77,20 +101,27 @@ public class DiplomaRepositoryimp implements DiplomaRepository {
             System.out.println(e.getMessage());
             return false;
         }
-
+        finally {
+            conn.close();
+        }
     }
 
     @Override
     public Diploma getDiploma(int id){
-		String sql = "SELECT * FROM diploma where id=:id";
-
-		try (Connection con = sql2o.open()) {
-			return con.createQuery(sql)
+		final String sql = "SELECT * FROM diploma where id=:id";
+		Diploma diploma;
+        Connection conn = sql2o.open();
+		try (conn) {
+			 diploma = conn.createQuery(sql)
 				.addParameter("id", id)
 				.executeAndFetchFirst(Diploma.class);
+            return diploma;
 		}catch(Exception e){
             System.out.println(e.getMessage());
             return null;
+        }
+        finally {
+            conn.close();
         }
 	}
 

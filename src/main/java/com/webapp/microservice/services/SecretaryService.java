@@ -5,7 +5,7 @@ import com.webapp.microservice.repositories.SecretaryRepository;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "secretaries")
 public class SecretaryService{
@@ -29,8 +29,7 @@ public class SecretaryService{
     @PostMapping("/create")
     @ResponseBody
     public Secretary createSecretary(@RequestBody Secretary secretary){
-        Secretary result = secretaryRepository.createSecretary(secretary);
-        return result;
+        return secretaryRepository.createSecretary(secretary);
     }
 
     @GetMapping("/delete/{id}")

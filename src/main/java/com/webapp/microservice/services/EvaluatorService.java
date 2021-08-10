@@ -4,7 +4,7 @@ import com.webapp.microservice.repositories.EvaluatorRepository;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "evaluators")
 public class EvaluatorService{
@@ -28,8 +28,7 @@ public class EvaluatorService{
     @PostMapping("/create")
     @ResponseBody
     public Evaluator createEvaluator(@RequestBody Evaluator evaluator){
-        Evaluator result = evaluatorRepository.createEvaluator(evaluator);
-        return result;
+        return evaluatorRepository.createEvaluator(evaluator);
     }
 
     @GetMapping("/delete/{id}")

@@ -3,7 +3,7 @@ import java.util.List;
 import com.webapp.microservice.models.Diploma;
 
 public interface DiplomaRepository {
-    public int countDiploma();
+    public Integer countDiploma();
     public List<Diploma> getAllDiploma();
     public Diploma createDiploma(Diploma diploma);
     public boolean deleteDiploma(int id);

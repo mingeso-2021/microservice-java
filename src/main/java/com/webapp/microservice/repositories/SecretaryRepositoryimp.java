@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-
 import java.util.List;
 
 @Repository
@@ -17,11 +16,19 @@ public class SecretaryRepositoryimp implements SecretaryRepository {
     @Override
     public int countSecretary() {
         int total = 0;
-        try(Connection conn = sql2o.open()){
+        Connection conn = sql2o.open();
+        try(conn){
             total = conn.createQuery("SELECT COUNT(*) FROM secretary").executeScalar(Integer.class);
+            return total;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return -1;
         }
-        return total;
+        finally {
+            conn.close();
+        }
     }
+
 
     @Override
     public List<Secretary> getAllSecretary() {
@@ -30,6 +37,9 @@ public class SecretaryRepositoryimp implements SecretaryRepository {
                     .executeAndFetch(Secretary.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return null;
+        }
+        finally {
             return null;
         }
     }
