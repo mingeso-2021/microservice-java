@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 public class SeleniumTest {
-
+  /*
   private static WebDriver driver;
   private static Map<String, Object> vars;
   static JavascriptExecutor js;
@@ -57,4 +57,6 @@ public class SeleniumTest {
   public static void tearDown() {
     driver.quit();
   }
+
+   */
 }
