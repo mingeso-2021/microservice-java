@@ -1,6 +1,9 @@
 
 pipeline {
 	agent any
+	environment{
+		DOCKERHUB_CREDENTIALS = credentials('fanunez-dockerhub');
+	}
 	stages {
         stage('Init') {
             steps {
@@ -34,10 +37,34 @@ pipeline {
 				}
 			}
 		}
+		stage('Docker Build'){
+            steps{
+                dir("/var/lib/jenkins/workspace/dev-microservice-admin"){
+                    sh 'docker build --build-arg JAR_FILE=build/libs/*.jar -t fanunez/microservice-mingeso .'
+                }
+            }
+        }
+        stage('Login'){
+            steps{
+                sh  'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+        stage('Docker Hub'){
+            steps{
+                dir("/var/lib/jenkins/workspace/dev-microservice-admin"){
+                    sh 'docker push fanunez/microservice-mingeso'
+                }
+            }
+		}
 		stage('End') {
             steps {
                 echo "Deploying Backend"
             }
         }
+	}
+	post {
+		always {
+			sh 'docker logout'
+		}
 	}
 }
