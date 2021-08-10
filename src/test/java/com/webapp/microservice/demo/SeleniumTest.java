@@ -30,7 +30,7 @@ public class SeleniumTest {
   By evaluatorBtnLocator = By.cssSelector("button[id='0']");
 
   @BeforeAll
-  public static void setUp() {
+  public static void setUp(){
     System.setProperty("webdriver.chrome.driver","./src/test/resources/chromedriver/chromedriver.exe");
     driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
@@ -78,6 +78,6 @@ public class SeleniumTest {
 
   @AfterAll
   public static void tearDown() {
-    driver.quit();
+    //driver.quit();
   }
 }
