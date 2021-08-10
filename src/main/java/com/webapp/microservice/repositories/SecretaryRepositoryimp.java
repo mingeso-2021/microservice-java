@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -33,14 +35,12 @@ public class SecretaryRepositoryimp implements SecretaryRepository {
     @Override
     public List<Secretary> getAllSecretary() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from secretary")
-                    .executeAndFetch(Secretary.class);
+            List<Secretary> secretaries =  conn.createQuery("select * from secretary")
+                                            .executeAndFetch(Secretary.class);
+            return secretaries;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return null;
-        }
-        finally {
-            return null;
+            return new ArrayList<>();
         }
     }
 
