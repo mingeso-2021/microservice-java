@@ -52,7 +52,7 @@ class DiplomaServiceTest {
 
     @Test
     void testCountDiploma() throws Exception{
-        String extra = "Tienes en total 10 de la lista.";
+        String extra = "Tienes en total 12 de la lista.";
         Mockito.when(diplomaService.countDiploma()).thenReturn(extra);
         RestTemplate restTemplate = new RestTemplate();
         String value = restTemplate.getForObject(url+"/count", String.class);
@@ -64,10 +64,10 @@ class DiplomaServiceTest {
     void testCreateDiploma() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
                 .post(url+"/create")
-                .content(asJsonString(new Diploma(9, "DiplomaTest3", 0)))
+                .content(asJsonString(new Diploma(13, "DiplomaTest3", 0)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(10));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(13));
     }
 
     public static String asJsonString(final Object obj) {
